@@ -2,13 +2,15 @@ package com.revature.beans;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
-
-	private static final long serialVersionUID = -7903604722078061506L;
+public class Admin implements Serializable{
+//Has a method that can approve accounts
+	
+	private static final long serialVersionUID = 6963249833586819265L;
 	
 	// Variables
 	private String username;
 	private String password;
+	
 	
 	public String getUsername() {
 		return username;
@@ -26,7 +28,7 @@ public class Employee implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Employee [username=" + username + ", password=" + password + "]";
+		return "EmployeeAdmin [username=" + username + ", password=" + password + "]";
 	}
 	
 	

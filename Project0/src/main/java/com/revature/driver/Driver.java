@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 import com.revature.menu.Menu;
 import com.revature.util.IO;
-import com.revature.util.PersonalUserInfo;
+import com.revature.util.UserInfo;
 
 /*Build the application using Java 8
-	- All interaction with the user should be done through the console using the Scanner class
+  - All interaction with the user should be done through the console using the Scanner class
 	Customers of the bank should be able to register with a username and password, 
 	and apply to open an account.
 	Customers should be able to apply for joint accounts
@@ -32,56 +32,15 @@ import com.revature.util.PersonalUserInfo;
 
 public class Driver {
 	
-	// Initialize the Scanner objects to receive input from user
-//	public static Scanner scString = new Scanner(System.in);
-//	public static Scanner scInt = new Scanner(System.in);
-//
 	public static void main(String[] args) {
-//		
-//		// Initialize a map object to store user names and passwords
-//		Map<List<String>, List<String>> loginInfo = new LinkedHashMap<>();
-//		
-//		System.out.println("Welcome to the bank!");
-//		System.out.println("Do you have an account with us?");
-//		System.out.println("If yes, enter 'Y'. Otherwise, enter 'N'");
-//		String reply = scString.nextLine();
-//		
-//		// If user replies 'Y', prompt user to enter login details
-//		if (reply.equalsIgnoreCase("Y")) {
-//			System.out.print("Please enter your username: ");
-//			String username = scString.nextLine();
-//			System.out.print("Please enter your password: ");
-//			String password = scString.nextLine();
-//		} 
-//		
-//		// If user replies 'N', ask user if he/she wants to create an acc
-//		else if (reply.equalsIgnoreCase("N")){
-//			System.out.println("Would you like to register an account with us?");
-//			System.out.println("If yes, enter 'Y'. Otherwise, enter 'N'");
-//			
-//			String reply2 = scString.nextLine();
-//			
-//			if (reply2.equalsIgnoreCase("Y")) {
-//				System.out.print("Please create a username: ");
-//				String username = scString.nextLine();
-//				System.out.print("Please create a password: ");
-//				String password = scString.nextLine();
-//			} else {
-//				
-//				System.out.println("Goodbye!");
-//				return;
-//			}
-//		}
-//		
-//		else {
-//			System.out.println("Invalid input");
-//			return;
-//		}
+		
+		// Reads in the customer details
 		IO.readCustomerFile();
-		System.out.println(PersonalUserInfo.customerList.toString());
+		System.out.println(UserInfo.customerList.toString());
+		
+		// Print main menu
 		Menu.mainMenu();
-	
 	}
-	}
+}
 
 

@@ -1,0 +1,78 @@
+package com.revature.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.beans.Admin;
+import com.revature.beans.Customer;
+import com.revature.beans.Employee;
+import com.revature.screen.Registration;
+
+public class UserInfo {
+	
+	public static List<Customer> customerList = new ArrayList<Customer>();
+	public static List<Employee> employeeList = new ArrayList<Employee>();
+	public static List<Admin>	adminList =  new ArrayList<Admin>();
+	
+	// Validate unique username creation
+	public static void validateUsername(String inputUserName) {
+		for (int i = 0; i < customerList.size(); i++) {
+			String userName = customerList.get(i).getUsername();
+			if (inputUserName.equals(userName)) {
+				System.out.println("Duplicate username");
+				Registration.registerMenu();
+			}
+			else {
+			//System.out.println("Username is unique");
+			}
+		}
+	}	
+	
+	// Find customer
+	public static Customer findCustomerByUsername(String inputUserName) {
+		for (int i = 0; i < customerList.size(); i++) {
+			String userName = customerList.get(i).getUsername();
+			if (inputUserName.equals(userName)) {
+				return customerList.get(i);
+			}
+		}
+			System.out.println("Username not found");
+			return null;
+	}	
+	
+	public static Customer findCustomerByPassword(String inputPassword) {
+		for (int i = 0; i < customerList.size(); i++) {
+			String password = customerList.get(i).getPassword();
+			if (inputPassword.equals(password)) {
+				return customerList.get(i);
+			}
+		}
+			System.out.println("Password not found");
+			return null;
+	}
+	
+	// Find Employee by user name
+	public static Employee findEmployeeByUsername(String inputUserName) {
+		for (int i = 0; i < employeeList.size(); i++) {
+			String userName = employeeList.get(i).getUsername();
+			if (inputUserName.equals(userName)) {
+				return employeeList.get(i);
+			}
+		}
+			System.out.println("Username not found");
+			return null;
+	}	
+	
+	//---------------------------find Admin----------------------------------------//
+	public static Admin findAdminByUsername(String inputUserName) {
+		for (int i = 0; i < adminList.size(); i++) {
+			String userName = adminList.get(i).getUsername();
+			if (inputUserName.equals(userName)) {
+				return adminList.get(i);
+			}
+		}
+			System.out.println("Username not found");
+			return null;
+	}	
+}
+

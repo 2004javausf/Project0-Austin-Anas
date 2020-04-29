@@ -16,18 +16,18 @@ public class PrintMenu {
 	public PrintMenu(String title, String... menuItems) {
 		this.title = title;
 		
-		// Iterates through menuItems and add them to the menu
+		// Iterates through menu items and add them to the menu
 		for (String item : menuItems) {
 			this.menuItems.add(item);
 		}
 	}
 	
-	// Add items to the menu list
+	// Method to add items to the menu list
 	public void addMenuItem (String item) {
 		menuItems.add(item);
 	}
 	
-	// Displays the menu and all its items
+	// Displays the menu and respective options
 	public void display() {
 		System.out.println(title + ":" );
 		

@@ -32,7 +32,7 @@ public class IO {
 	public static void readCustomerFile() {
 		try {
 			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(customerFile));
-			PersonalUserInfo.customerList = (ArrayList<Customer>) objectIn.readObject();
+			UserInfo.customerList = (ArrayList<Customer>) objectIn.readObject();
 			objectIn.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

@@ -3,7 +3,7 @@ package com.revature.beans;
 import java.io.Serializable;
 
 import com.revature.util.IO;
-import com.revature.util.PersonalUserInfo;
+import com.revature.util.UserInfo;
 
 public class Customer implements Serializable {
 		
@@ -18,15 +18,15 @@ public class Customer implements Serializable {
 		public Customer() {
 			super();
 			this.accountNumber = accountNumber++;
-			PersonalUserInfo.customerList.add(this);
+			UserInfo.customerList.add(this);
 		}
 		
 		public Customer(String username, String password) {
 			super();
 			this.username = username;
 			this.password = password;
-			PersonalUserInfo.customerList.add(this);
-			IO.writeCustomerFile(PersonalUserInfo.customerList);
+			UserInfo.customerList.add(this);
+			IO.writeCustomerFile(UserInfo.customerList);
 		}
 
 		public Customer(String username, String password, int accountNumber, double accountBalance) {
@@ -35,8 +35,8 @@ public class Customer implements Serializable {
 			this.password = password;
 			this.accountNumber = accountNumber++;
 			this.accountBalance = accountBalance;
-			PersonalUserInfo.customerList.add(this);
-			IO.writeCustomerFile(PersonalUserInfo.customerList);
+			UserInfo.customerList.add(this);
+			IO.writeCustomerFile(UserInfo.customerList);
 		}
 		//getters and setters
 		public String getUsername() {

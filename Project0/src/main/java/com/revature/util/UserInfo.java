@@ -6,7 +6,7 @@ import java.util.List;
 import com.revature.beans.Admin;
 import com.revature.beans.Customer;
 import com.revature.beans.Employee;
-import com.revature.screen.Login;
+import com.revature.screen.CustomerScr;
 import com.revature.screen.Registration;
 
 public class UserInfo {
@@ -43,7 +43,7 @@ public class UserInfo {
 		
 		if(usernameExist == false) {
 			System.out.println("Username not found");
-			Login.userLogin();
+			CustomerScr.userLogin();
 		}
 	}
 		

@@ -15,7 +15,7 @@ public class Registration {
 		String userName = scan.nextLine();
 		
 		// Validate that user name is unique
-		UserInfo.validateUsername(userName);
+		UserInfo.validateUniqueUsername(userName);
 		
 		System.out.println("Please create a password");
 		String password = scan.nextLine();

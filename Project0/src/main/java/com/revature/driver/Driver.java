@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.revature.menu.Menu;
+import com.revature.beans.Customer;
+import com.revature.menu.PrintMenu;
+import com.revature.screen.CustomerScr;
+import com.revature.screen.Registration;
 import com.revature.util.IO;
 import com.revature.util.UserInfo;
 
@@ -32,6 +35,10 @@ import com.revature.util.UserInfo;
 
 public class Driver {
 	
+	static Scanner scan = new Scanner(System.in);
+	static Scanner scString = new Scanner(System.in);
+	
+	
 	public static void main(String[] args) {
 		
 		// Reads in the customer details
@@ -39,7 +46,41 @@ public class Driver {
 		System.out.println(UserInfo.customerList.toString());
 		
 		// Print main menu
-		Menu.mainMenu();
+		mainMenu();
+	}
+	
+	
+	public static void mainMenu() {
+		System.out.println("Welcome to Children's Bank");
+		System.out.println("Please select an option");
+		
+		PrintMenu mainMenu = new PrintMenu("Main Menu", "Register Account", "Login", "Employee", "Bank Admin", "Exit");
+		mainMenu.display();
+		int mainMenuChoice = scan.nextInt();
+		// Switch statement to process option chosen
+		
+		switch(mainMenuChoice) {
+		case 1:
+			Registration.registerMenu();
+			break;
+		case 2:
+			// Process login for existing user
+			CustomerScr.userLogin();
+			break;
+		case 3:
+			// Employee login
+			break;
+		case 4: 
+			 // Bank admin login
+			break;
+		case 5:
+			System.out.println("Thanks for banking with us");
+			break;
+		default:
+			System.out.println("Invalid input. Goodbye \n");
+			//Terminate program
+			System.exit(0);
+		}
 	}
 }
 

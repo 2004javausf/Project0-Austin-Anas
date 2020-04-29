@@ -6,6 +6,7 @@ import java.util.List;
 import com.revature.beans.Admin;
 import com.revature.beans.Customer;
 import com.revature.beans.Employee;
+import com.revature.screen.Login;
 import com.revature.screen.Registration;
 
 public class UserInfo {
@@ -15,7 +16,7 @@ public class UserInfo {
 	public static List<Admin>	adminList =  new ArrayList<Admin>();
 	
 	// Validate unique username creation
-	public static void validateUsername(String inputUserName) {
+	public static void validateUniqueUsername(String inputUserName) {
 		for (int i = 0; i < customerList.size(); i++) {
 			String userName = customerList.get(i).getUsername();
 			if (inputUserName.equals(userName)) {
@@ -28,16 +29,36 @@ public class UserInfo {
 		}
 	}	
 	
-	// Find customer
-	public static Customer findCustomerByUsername(String inputUserName) {
+	// Validate existing username 
+	public static void validateUsername(String inputUserName) {
+		
+		boolean usernameExist = false;
+		
 		for (int i = 0; i < customerList.size(); i++) {
 			String userName = customerList.get(i).getUsername();
 			if (inputUserName.equals(userName)) {
-				return customerList.get(i);
+				usernameExist = true;
 			}
 		}
+		
+		if(usernameExist == false) {
 			System.out.println("Username not found");
-			return null;
+			Login.userLogin();
+		}
+	}
+		
+	
+	// Find customer
+	public static Customer findCustomerByUsername(String inputUserName) {
+		Customer c = new Customer();
+		
+		for (int i = 0; i < customerList.size(); i++) {
+			String userName = customerList.get(i).getUsername();
+			if (inputUserName.equals(userName)) {
+				c = customerList.get(i);
+			}
+		}
+		return c;
 	}	
 	
 	public static Customer findCustomerByPassword(String inputPassword) {

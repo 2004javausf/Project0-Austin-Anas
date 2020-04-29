@@ -13,10 +13,12 @@ public class Customer implements Serializable {
 		private String password;
 		private static int accountNumber = 10000;
 		private double accountBalance;
+		private boolean pendingAcc = true;
 
 		//Constructors
 		public Customer() {
 			super();
+			this.username = "";
 			this.accountNumber = accountNumber++;
 			UserInfo.customerList.add(this);
 		}

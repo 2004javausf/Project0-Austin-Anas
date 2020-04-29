@@ -45,8 +45,8 @@ public class Menu {
 	
 	//----------------------------Customer Menu------------------------------------------------//
 	public static void customerMenu() {
+		System.out.println("\n====================================");
 		System.out.println("Welcome back my child");
-		System.out.println("Please select an option");
 		
 		PrintMenu loginMenu = new PrintMenu("Menu", "Check Balance", "Deposit", "Withdraw", "Open New Bank Account", "Exit");
 		loginMenu.display();
@@ -106,7 +106,6 @@ public class Menu {
 			System.exit(0);
 		}
 	}
-		
 		
 		//------------------------------Admin Menu---------------------------------------------//
 		public static void adminMenu() {

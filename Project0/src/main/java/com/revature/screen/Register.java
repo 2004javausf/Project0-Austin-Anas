@@ -21,7 +21,7 @@ public class Register {
 		String password = scan.nextLine();
 		
 		new Customer(userName, password);
-		System.out.println("Thank you for applying! Once your application is reviewed, you will be able to sign in.");
+		System.out.println("Thank you for applying! Once your application is reviewed, you will be able to utilize our banking services.");
 		
 		
 		

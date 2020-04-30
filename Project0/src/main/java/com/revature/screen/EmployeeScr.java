@@ -41,7 +41,7 @@ public class EmployeeScr {
 			
 			PrintMenu employeeMenu = new PrintMenu("Menu", "Accounts", "Pending Applications", "Exit");
 			employeeMenu.display();
-			int employeeMenuChoice = scan.nextInt();
+			int employeeMenuChoice = scanInt.nextInt();
 			
 			// Switch statement to process option chosen
 			switch(employeeMenuChoice) {
@@ -70,8 +70,10 @@ public class EmployeeScr {
 			System.out.println("Customer List:\n");
 			for (int i = 0; i < UserInfo.customerList.size(); i++) {
 				Customer customer = UserInfo.customerList.get(i);
+				if(!customer.getUsername().isEmpty()) {
 				System.out.println("Username: " + customer.getUsername());
 				System.out.println("Accounts & Balances: " + customer.getAccNo());
+			}
 			}
 			
 			employeeMenu();
@@ -79,32 +81,32 @@ public class EmployeeScr {
 		
 		// Method to review pending applications
 		public static void reviewPendingApp() {
-			
+						
 			boolean userFound = false;
 			boolean pendingApp = false;
 			String userName;
-			
+						
 			System.out.println("Customers with pending applications:");
-			
+						
 			for (int i = 0; i < UserInfo.customerList.size(); i++) {
 				pendingApp = UserInfo.customerList.get(i).isPendingAcc();
-				
+							
 				if(pendingApp == true) {
 					System.out.println(UserInfo.customerList.get(i).getUsername());
 				}
 			}
-			
+						
 			do {
 				System.out.println("Please enter the customer's username which you would like to review his/her application:");
-				userName = scan2.nextLine();
+				userName = scan.nextLine();
 				Customer c = UserInfo.findCustomerByUsername(userName);
-				
+							
 				if(c.getUsername().equals(userName)) {
 					userFound = true;
-			
+						
 					System.out.println("Would you like to approve this customer's application? [Y/N]");	
 					String ans = scan.nextLine();
-				
+							
 					if(ans.equalsIgnoreCase("y")) {
 						System.out.println("You have approved the customers application!");
 						System.out.println("Please assign a new account number for his newly opened account:");
@@ -115,10 +117,10 @@ public class EmployeeScr {
 					}else {
 						System.out.println("You have rejected the customer's application.");		
 					}
-					//c.setPendingAcc(false);		
+					c.setPendingAcc(false);		
 				} else System.out.println("Username not found");
 			}while(userFound == false);
-	
+				
 			employeeMenu();
 		}
 

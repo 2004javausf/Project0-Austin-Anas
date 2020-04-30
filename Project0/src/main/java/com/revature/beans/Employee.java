@@ -20,7 +20,6 @@ public class Employee implements Serializable {
 		UserInfo.employeeList.add(this);
 	}
 	
-	
 	public Employee(String username, String password) {
 		super();
 		this.username = username;

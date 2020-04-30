@@ -42,7 +42,7 @@ public class CustomerScr {
 			
 			PrintMenu loginMenu = new PrintMenu("Menu", "Check Balance", "Deposit", "Withdraw","Transfer Funds", "Open New Bank Account", "Exit");
 			loginMenu.display();
-			int customerMenuChoice = scan.nextInt();
+			int customerMenuChoice = scanInt.nextInt();
 			
 			// Switch statement to process option chosen
 			switch(customerMenuChoice) {

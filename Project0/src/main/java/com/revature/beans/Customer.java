@@ -1,9 +1,13 @@
 package com.revature.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.revature.util.IO;
-import com.revature.util.PersonalUserInfo;
+import com.revature.util.UserInfo;
 
 public class Customer implements Serializable {
 		
@@ -11,34 +15,38 @@ public class Customer implements Serializable {
 		//personal account 
 		private String username;
 		private String password;
-		private static int accountNumber = 10000;
-		private double accountBalance;
+		private List<Integer> accountNumbers = new ArrayList<Integer>();
+		private Map <Integer, Double> accNo = new HashMap<>();
+		private boolean pendingAcc;
 
-		//Constructors
+		// Constructors
 		public Customer() {
 			super();
-			this.accountNumber = accountNumber++;
-			PersonalUserInfo.customerList.add(this);
+			this.username = "";
+			this.accountNumbers = new ArrayList<Integer>();
+			UserInfo.customerList.add(this);
 		}
 		
 		public Customer(String username, String password) {
 			super();
 			this.username = username;
 			this.password = password;
-			PersonalUserInfo.customerList.add(this);
-			IO.writeCustomerFile(PersonalUserInfo.customerList);
+			this.accountNumbers = new ArrayList<Integer>();
+			UserInfo.customerList.add(this);
+			IO.writeCustomerFile(UserInfo.customerList);
 		}
 
-		public Customer(String username, String password, int accountNumber, double accountBalance) {
+		public Customer(String username, String password, Map<Integer, Double> accNo) {
 			super();
 			this.username = username;
 			this.password = password;
-			this.accountNumber = accountNumber++;
-			this.accountBalance = accountBalance;
-			PersonalUserInfo.customerList.add(this);
-			IO.writeCustomerFile(PersonalUserInfo.customerList);
+			this.accNo = accNo;
+			//this.accountNumbers = accountNumbers;
+			UserInfo.customerList.add(this);
+			IO.writeCustomerFile(UserInfo.customerList);
+			
 		}
-		//getters and setters
+		// Getter and Setter methods
 		public String getUsername() {
 			return username;
 		}
@@ -55,28 +63,34 @@ public class Customer implements Serializable {
 			this.password = password;
 		}
 
-		public int getAccountNumber() {
-			return accountNumber;
+		public List<Integer> getAccountNumbers() {
+			return accountNumbers;
 		}
 
-		public void setAccountNumber(int accountNumber) {
-			this.accountNumber = accountNumber;
+		public void setAccountNumbers(List<Integer> accountNumbers) {
+			this.accountNumbers = accountNumbers;
 		}
 
-		public double getAccountBalance() {
-			return accountBalance;
+		
+		public Map<Integer, Double> getAccNo() {
+			return accNo;
 		}
 
-		public void setAccountBalance(double accountBalance) {
-			this.accountBalance = accountBalance;
+		public void setAccNo(Map<Integer,Double> accNo) {
+			this.accNo = accNo;
+		}
+		
+		public boolean isPendingAcc() {
+			return pendingAcc;
+		}
+
+		public void setPendingAcc(boolean pendingAcc) {
+			this.pendingAcc = pendingAcc;
 		}
 
 		@Override
 		public String toString() {
-			return "Customer [username=" + username + ", password=" + password + ", accountNumber=" + accountNumber
-					+ ", accountBalance=" + accountBalance + "]";
+			return "Customer [username=" + username + ", password=" + password + ", accNo=" + accNo + "]";
 		}
-		
-		
-		
+				
 }

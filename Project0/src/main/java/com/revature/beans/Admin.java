@@ -5,31 +5,31 @@ import java.io.Serializable;
 import com.revature.util.IO;
 import com.revature.util.UserInfo;
 
-public class Employee implements Serializable {
-
-	private static final long serialVersionUID = -7903604722078061506L;
+public class Admin implements Serializable{
+//Has a method that can approve accounts
+	
+	private static final long serialVersionUID = 6963249833586819265L;
 	
 	// Variables
 	private String username;
 	private String password;
 	
 	// Constructors
-	public Employee() {
+	public Admin() {
 		super();
 		this.username = "";
-		UserInfo.employeeList.add(this);
+		UserInfo.adminList.add(this);
 	}
 	
-	
-	public Employee(String username, String password) {
+	public Admin(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		UserInfo.employeeList.add(this);
-		IO.writeEmployeeFile(UserInfo.employeeList);
+		UserInfo.adminList.add(this);
+		IO.writeAdminFile(UserInfo.adminList);
 	}
 
-	// Setter & Getter Methods
+	// Setters & Getters
 	public String getUsername() {
 		return username;
 	}
@@ -46,7 +46,7 @@ public class Employee implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Employee [username=" + username + ", password=" + password + "]";
+		return "EmployeeAdmin [username=" + username + ", password=" + password + "]";
 	}
 	
 	

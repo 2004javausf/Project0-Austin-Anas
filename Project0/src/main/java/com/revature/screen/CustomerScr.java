@@ -199,8 +199,7 @@ public class CustomerScr {
 					System.out.println("Prior funds: " + availableFunds);	
 					System.out.println("New funds: " + newFunds);	
 				}	
-				
-				
+					
 			 }
 			   else {
 					System.out.println("You are ineligible to perform any transactions at this moment.");

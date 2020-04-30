@@ -59,4 +59,15 @@ public class AdminScr {
 	}
 	
 	//------------------------------Admin Methods---------------------------------------------//
+	
+	// Method to add account under customer
+	public static void addAcc(String cust, String acc) {
+		
+	}
+	
+	
+	// Method to delete account under customer
+	public static void deleteAcc(String cust, String acc) {
+		
+	}
 }

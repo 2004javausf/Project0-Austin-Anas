@@ -2,6 +2,9 @@ package com.revature.beans;
 
 import java.io.Serializable;
 
+import com.revature.util.IO;
+import com.revature.util.UserInfo;
+
 public class Admin implements Serializable{
 //Has a method that can approve accounts
 	
@@ -11,7 +14,22 @@ public class Admin implements Serializable{
 	private String username;
 	private String password;
 	
+	// Constructors
+	public Admin() {
+		super();
+		this.username = "";
+		UserInfo.adminList.add(this);
+	}
 	
+	public Admin(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+		UserInfo.adminList.add(this);
+		IO.writeAdminFile(UserInfo.adminList);
+	}
+
+	// Setters & Getters
 	public String getUsername() {
 		return username;
 	}

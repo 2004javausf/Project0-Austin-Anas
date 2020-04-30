@@ -14,25 +14,26 @@ public class EmployeeScr {
 	static boolean logged = false;
 	
 	// Employee Login
-		public static void employeeLogin() {
-			logged = false;
-			do {
+	public static void employeeLogin() {
+		logged = false;
+		do {
 			System.out.println("Please enter your username");
 			String inputUsername = scan.nextLine();
 			Employee c = UserInfo.findEmployeeByUsername(inputUsername);
-			System.out.println("Please enter your password");
-			String inputPassword = scan.nextLine();
-			if (inputPassword.equals(c.getPassword())) {
-				//methods for customers
-				logged = true;
-				employeeMenu();
-			} else System.out.println("Sir, wrong password");
-			}while(logged=false);
-		}
+			if(c.getUsername().equals(inputUsername)) {
+				System.out.println("Please enter your password");
+				String inputPassword = scan.nextLine();
+				if (inputPassword.equals(c.getPassword())) {
+					logged = true;
+					employeeMenu();
+				} else System.out.println("My child, wrong password");
+			 }
+		}while(logged=false);
+	}
 		
 		//------------------------------Employee Menu---------------------------------------------//
 		public static void employeeMenu() {
-			System.out.println("Welcome back sir");
+			System.out.println("\nWelcome back sir");
 			System.out.println("Please select an option");
 			
 			PrintMenu employeeMenu = new PrintMenu("Menu", "Accounts", "Pending Applications", "Exit");
@@ -57,7 +58,9 @@ public class EmployeeScr {
 			}
 		}
 		
-		//Method to review pending applications
+		//-----------------------Enployee Methods-----------------------------------------//
+		
+		// Method to review pending applications
 		public static boolean reviewPendingApp() {
 			for (int i = 0; i < UserInfo.customerList.size(); i++) {
 				String userName = UserInfo.customerList.get(i).getUsername();
@@ -68,7 +71,6 @@ public class EmployeeScr {
 			return false;
 		}
 		
-		//---------------------------Employee Methods------------------------------------------//
 		// Method to check acc
 		public static void checkAcc() {
 			

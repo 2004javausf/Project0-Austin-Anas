@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 		private Map <Integer, Double> accNo = new HashMap<>();
 		private boolean pendingAcc;
 
-		//Constructors
+		// Constructors
 		public Customer() {
 			super();
 			this.username = "";
@@ -46,7 +46,7 @@ public class Customer implements Serializable {
 			IO.writeCustomerFile(UserInfo.customerList);
 			
 		}
-		//getters and setters
+		// Getter and Setter methods
 		public String getUsername() {
 			return username;
 		}
@@ -80,8 +80,6 @@ public class Customer implements Serializable {
 			this.accNo = accNo;
 		}
 		
-		
-
 		public boolean isPendingAcc() {
 			return pendingAcc;
 		}

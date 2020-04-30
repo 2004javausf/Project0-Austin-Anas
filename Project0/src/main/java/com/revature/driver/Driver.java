@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.revature.beans.Admin;
 import com.revature.beans.Customer;
+import com.revature.beans.Employee;
 import com.revature.menu.PrintMenu;
+import com.revature.screen.AdminScr;
 import com.revature.screen.CustomerScr;
+import com.revature.screen.EmployeeScr;
 import com.revature.screen.Registration;
 import com.revature.util.IO;
 import com.revature.util.UserInfo;
@@ -40,22 +44,28 @@ public class Driver {
 	static Scanner scan = new Scanner(System.in);
 	static Scanner scString = new Scanner(System.in);
 	
-	
 	public static void main(String[] args) {
 		
 		// Reads in the customer details
 		IO.readCustomerFile();
+		IO.readEmployeeFile();
+		IO.readAdminFile();
 		System.out.println(UserInfo.customerList.toString());
-		
-		// Print main menu
+		System.out.println(UserInfo.employeeList.toString());
+		System.out.println(UserInfo.adminList.toString());
 		
 //		Map<Integer, Double> acc = new HashMap<>();
 //		acc.put(3892147, 999999999.99);
 //		acc.put(3845355, 999999999.99);
+		
 //		Customer matt = new Customer("Matt", "passwordy", acc);
 //		ArrayList<Integer> acc = new ArrayList<Integer>();
 //		acc.add(99999);
-//		Customer matt = new Customer("Matt", "passwordy", 1000000.00, acc);
+		
+//		Employee anas = new Employee("Anas", "password1");
+//		Admin anas2 = new Admin("Anas", "password2");
+		
+		// Print main menu
 		mainMenu();
 	}
 	
@@ -73,6 +83,10 @@ public class Driver {
 		// Switch statement to process option chosen
 		
 		switch(mainMenuChoice) {
+		default:
+			System.out.println("Invalid input. Goodbye \n");
+			//Terminate program
+			System.exit(0);
 		case 1:
 			Registration.registerMenu();
 			break;
@@ -82,17 +96,16 @@ public class Driver {
 			break;
 		case 3:
 			// Employee login
+			EmployeeScr.employeeLogin();
 			break;
 		case 4: 
-			 // Bank admin login
+			 // Bank administrator login
+			AdminScr.adminLogin();
 			break;
 		case 5:
-			System.out.println("Thanks for banking with us");
+			// Exit program
+			System.out.println("\nThank you for banking with us");
 			break;
-		default:
-			System.out.println("Invalid input. Goodbye \n");
-			//Terminate program
-			System.exit(0);
 		}
 	}
 }

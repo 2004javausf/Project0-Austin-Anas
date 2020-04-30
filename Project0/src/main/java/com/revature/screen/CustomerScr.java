@@ -31,7 +31,7 @@ public class CustomerScr {
 					logged = true;
 					customerMenu();
 				} else System.out.println("My child, wrong password");
-			}
+			}else System.out.println("Username not found");
 			}while(logged == false);
 		}	
 		
@@ -77,11 +77,9 @@ public class CustomerScr {
 			}
 		}
 	
-		
 		//----------------------------Methods for Customer Screen---------------------------------------//
 		
-	
-		// method for checking if customer has account or not
+		// Method for checking if customer has account or not
 		public static boolean hasAccount(Customer c) {
 			
 			boolean hasAcc = true;
@@ -92,8 +90,7 @@ public class CustomerScr {
 			return hasAcc;	
 		}
 		
-		
-		// method to check customer's account balance
+		// Method to check customer's account balance
 		public static void checkBalance(Customer c) {
 			
 			Set<Integer> acc = c.getAccNo().keySet();
@@ -104,8 +101,7 @@ public class CustomerScr {
 			customerMenu();
 		}
 			
-		
-		// method for withdrawals
+		// Method for withdrawals
 		public static void withdraw(Customer c) {
 			
 		 if(hasAccount(c) == true) {
@@ -150,8 +146,6 @@ public class CustomerScr {
 				System.out.println("Prior funds: " + availableFunds);	
 				System.out.println("New funds: " + newFunds);	
 			}	
-			
-			
 		 }
 		   else {
 				System.out.println("You are ineligible to perform any transactions at this moment.");
@@ -159,11 +153,8 @@ public class CustomerScr {
 			}
 			customerMenu();
 		}
-
-		
-		
-		
-		// method for deposits
+	
+		// Method for deposits
 		public static void deposit(Customer c) {
 			
 			if(hasAccount(c) == true) {
@@ -221,7 +212,7 @@ public class CustomerScr {
 		
 		// Method for applying for new accounts
 		public static void applyNewAcc(Customer c){
-			System.out.println("Thank you for applying to open a new account!");
+			System.out.println("\n\nThank you for applying to open a new account!");
 			System.out.println("We will process your application shortly");
 			c.setPendingAcc(true);
 			customerMenu();

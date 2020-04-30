@@ -7,7 +7,6 @@ import com.revature.beans.Admin;
 import com.revature.beans.Customer;
 import com.revature.beans.Employee;
 import com.revature.screen.CustomerScr;
-import com.revature.screen.Registration;
 
 public class UserInfo {
 	
@@ -47,7 +46,7 @@ public class UserInfo {
 	}
 		
 	
-	// Find customer
+	// Find Customer by user name
 	public static Customer findCustomerByUsername(String inputUserName) {
 		Customer c = new Customer();
 		
@@ -59,40 +58,31 @@ public class UserInfo {
 		}
 		return c;
 	}	
-	
-	public static Customer findCustomerByPassword(String inputPassword) {
-		for (int i = 0; i < customerList.size(); i++) {
-			String password = customerList.get(i).getPassword();
-			if (inputPassword.equals(password)) {
-				return customerList.get(i);
-			}
-		}
-			System.out.println("Password not found");
-			return null;
-	}
-	
+		
 	// Find Employee by user name
 	public static Employee findEmployeeByUsername(String inputUserName) {
+		Employee c = new Employee();
+		
 		for (int i = 0; i < employeeList.size(); i++) {
 			String userName = employeeList.get(i).getUsername();
 			if (inputUserName.equals(userName)) {
-				return employeeList.get(i);
+				c = employeeList.get(i);
 			}
 		}
-			System.out.println("Username not found");
-			return null;
+			return c;
 	}	
 	
 	//---------------------------find Admin----------------------------------------//
 	public static Admin findAdminByUsername(String inputUserName) {
+		Admin c = new Admin();
+		
 		for (int i = 0; i < adminList.size(); i++) {
 			String userName = adminList.get(i).getUsername();
 			if (inputUserName.equals(userName)) {
-				return adminList.get(i);
+				c = adminList.get(i);
 			}
 		}
-			System.out.println("Username not found");
-			return null;
+			return c;
 	}	
 }
 

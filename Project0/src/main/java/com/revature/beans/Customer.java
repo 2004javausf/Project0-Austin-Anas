@@ -17,7 +17,7 @@ public class Customer implements Serializable {
 		private String password;
 		private List<Integer> accountNumbers = new ArrayList<Integer>();
 		private Map <Integer, Double> accNo = new HashMap<>();
-		private boolean pendingAcc;
+		private boolean pendingAcc = true;
 
 		// Constructors
 		public Customer() {

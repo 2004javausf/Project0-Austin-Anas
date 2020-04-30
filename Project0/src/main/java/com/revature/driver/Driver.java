@@ -84,7 +84,8 @@ public class Driver {
 		
 		switch(mainMenuChoice) {
 		default:
-			System.out.println("Invalid input. Goodbye \n");
+			System.out.println("Invalid input\n");
+			mainMenu();
 			//Terminate program
 			System.exit(0);
 		case 1:
@@ -107,6 +108,7 @@ public class Driver {
 			System.out.println("\nThank you for banking with us");
 			break;
 		}
+		
 	}
 }
 

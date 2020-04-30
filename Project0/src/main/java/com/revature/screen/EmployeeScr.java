@@ -1,7 +1,9 @@
 package com.revature.screen;
 
+import java.util.Map;
 import java.util.Scanner;
 
+import com.revature.beans.Customer;
 import com.revature.beans.Employee;
 import com.revature.driver.Driver;
 import com.revature.menu.PrintMenu;
@@ -11,6 +13,7 @@ public class EmployeeScr {
 
 	public static Scanner scanInt = new Scanner(System.in);
 	public static Scanner scan = new Scanner(System.in);
+	public static Scanner scan2 = new Scanner(System.in);
 	static boolean logged = false;
 	
 	// Employee Login
@@ -42,56 +45,82 @@ public class EmployeeScr {
 			
 			// Switch statement to process option chosen
 			switch(employeeMenuChoice) {
+			default:
+				System.out.println("Invalid input");	
+
 			case 1:
 				// Check customer bank accounts
+				checkAcc();
 				break;
 			case 2:
-				// Check, approve & reject applications
+				// Check, Approve & reject applications
+				reviewPendingApp();
 				break;
 			case 3:
-				// Exit
+				// Exit to Main Menu
 				Driver.mainMenu();
-			default:
-				System.out.println("Invalid input. Goodbye \n");	
-				//Terminate program
-				System.exit(0);
 			}
 		}
 		
 		//-----------------------Enployee Methods-----------------------------------------//
 		
-		// Method to review pending applications
-		public static boolean reviewPendingApp() {
-			for (int i = 0; i < UserInfo.customerList.size(); i++) {
-				String userName = UserInfo.customerList.get(i).getUsername();
 
-			}
-				System.out.println("Username not found");
-			
-			return false;
-		}
-		
 		// Method to check acc
 		public static void checkAcc() {
+			System.out.println("Customer List:\n");
+			for (int i = 0; i < UserInfo.customerList.size(); i++) {
+				Customer customer = UserInfo.customerList.get(i);
+				System.out.println("Username: " + customer.getUsername());
+				System.out.println("Accounts & Balances: " + customer.getAccNo());
+			}
+			
+			employeeMenu();
+		}
+		
+		// Method to review pending applications
+		public static void reviewPendingApp() {
+			
+			boolean userFound = false;
+			boolean pendingApp = false;
+			String userName;
+			
+			System.out.println("Customers with pending applications:");
 			
 			for (int i = 0; i < UserInfo.customerList.size(); i++) {
-				String userName = UserInfo.customerList.get(i).getUsername();
-
+				pendingApp = UserInfo.customerList.get(i).isPendingAcc();
+				
+				if(pendingApp == true) {
+					System.out.println(UserInfo.customerList.get(i).getUsername());
+				}
 			}
-				System.out.println("Username not found");
 			
-		}
-		
-		
-		// Method to add account under customer
-		public static void addAcc(String cust, String acc) {
+			do {
+				System.out.println("Please enter the customer's username which you would like to review his/her application:");
+				userName = scan2.nextLine();
+				Customer c = UserInfo.findCustomerByUsername(userName);
+				
+				if(c.getUsername().equals(userName)) {
+					userFound = true;
 			
+					System.out.println("Would you like to approve this customer's application? [Y/N]");	
+					String ans = scan.nextLine();
+				
+					if(ans.equalsIgnoreCase("y")) {
+						System.out.println("You have approved the customers application!");
+						System.out.println("Please assign a new account number for his newly opened account:");
+						Integer newAcc = scanInt.nextInt();
+						Map<Integer,Double> existingAcc = c.getAccNo();
+						existingAcc.put(newAcc, 0.00);
+						c.setAccNo(existingAcc);
+					}else {
+						System.out.println("You have rejected the customer's application.");		
+					}
+					//c.setPendingAcc(false);		
+				} else System.out.println("Username not found");
+			}while(userFound == false);
+	
+			employeeMenu();
 		}
-		
-		
-		// Method to delete account under customer
-		public static void deleteAcc(String cust, String acc) {
-			
-		}
+
 		
 }

@@ -1,5 +1,7 @@
 package com.revature.driver;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,9 +48,20 @@ public class Driver {
 		System.out.println(UserInfo.customerList.toString());
 		
 		// Print main menu
+		
+//		Map<Integer, Double> acc = new HashMap<>();
+//		acc.put(3892147, 999999999.99);
+//		acc.put(3845355, 999999999.99);
+//		Customer matt = new Customer("Matt", "passwordy", acc);
+//		ArrayList<Integer> acc = new ArrayList<Integer>();
+//		acc.add(99999);
+//		Customer matt = new Customer("Matt", "passwordy", 1000000.00, acc);
 		mainMenu();
 	}
 	
+	
+	
+	//----------------------Main Menu--------------------------------------------//
 	
 	public static void mainMenu() {
 		System.out.println("Welcome to Children's Bank");

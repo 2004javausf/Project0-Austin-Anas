@@ -16,17 +16,16 @@ public class UserInfo {
 	public static List<Admin>	adminList =  new ArrayList<Admin>();
 	
 	// Validate unique username creation
-	public static void validateUniqueUsername(String inputUserName) {
+	public static boolean validateUniqueUsername(String inputUserName) {
+		
+		boolean unique = true;
 		for (int i = 0; i < customerList.size(); i++) {
 			String userName = customerList.get(i).getUsername();
 			if (inputUserName.equals(userName)) {
-				System.out.println("Duplicate username");
-				Registration.registerMenu();
-			}
-			else {
-			//System.out.println("Username is unique");
+				unique = false;
 			}
 		}
+		return unique;
 	}	
 	
 	// Validate existing username 

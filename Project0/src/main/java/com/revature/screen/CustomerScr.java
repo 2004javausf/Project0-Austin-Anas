@@ -1,6 +1,9 @@
 package com.revature.screen;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.revature.beans.Customer;
 import com.revature.driver.Driver;
@@ -37,7 +40,7 @@ public class CustomerScr {
 			System.out.println("\n====================================");
 			System.out.println("Welcome back my child");
 			
-			PrintMenu loginMenu = new PrintMenu("Menu", "Check Balance", "Deposit", "Withdraw", "Open New Bank Account", "Exit");
+			PrintMenu loginMenu = new PrintMenu("Menu", "Check Balance", "Deposit", "Withdraw","Transfer Funds", "Open New Bank Account", "Exit");
 			loginMenu.display();
 			int customerMenuChoice = scan.nextInt();
 			
@@ -45,9 +48,11 @@ public class CustomerScr {
 			switch(customerMenuChoice) {
 			case 1:
 				// Check balance
+				checkBalance(c);
 				break;
 			case 2:
 				// Deposit
+				deposit(c);
 				
 				break;
 			case 3:
@@ -55,14 +60,15 @@ public class CustomerScr {
 				withdraw(c);
 				break;
 			case 4: 
-				 // Open new account
+				 // Transfer Funds
 				break;
 			case 5:
-				// Main menu
-				Driver.mainMenu();
+				// Open new acc
+				applyNewAcc(c);
 				break;
 			case 6:
-				// Exit
+				// Main menu
+				Driver.mainMenu();
 			default:
 				System.out.println("Invalid input. Goodbye \n");
 				
@@ -74,36 +80,154 @@ public class CustomerScr {
 		
 		//----------------------------Methods for Customer Screen---------------------------------------//
 		
+	
 		// method for checking if customer has account or not
-		public static boolean hasAccount(String username) {
+		public static boolean hasAccount(Customer c) {
 			
-			return false;	
+			boolean hasAcc = true;
+			
+			if(c.getAccNo().isEmpty()) {
+				hasAcc = false;
+			}		
+			return hasAcc;	
 		}
+		
+		
+		// method to check customer's account balance
+		public static void checkBalance(Customer c) {
+			
+			Set<Integer> acc = c.getAccNo().keySet();
+			
+			for(Integer i: acc) {
+				System.out.println( "Account Number: " + Integer.valueOf(i) + "  Balance: " + c.getAccNo().get(i) );
+	    	}
+			customerMenu();
+		}
+			
 		
 		// method for withdrawals
 		public static void withdraw(Customer c) {
+			
+		 if(hasAccount(c) == true) {
+			
+			double availableFunds = 0;
+			double newFunds;
+			boolean accExist = false;
+			Integer accNo;
+			Set<Integer> acc = c.getAccNo().keySet();
+			
+			System.out.println("Available account(s):");
+			for(Integer i: acc) {
+				System.out.println( "Account Number: " + Integer.valueOf(i) );
+	    	}
+			
+			do {
+			System.out.println("Please enter the account number that you would like to withdraw money from:");
+			accNo = scanInt.nextInt();
+			
+			for(Integer i: acc) {
+				if(accNo.equals(Integer.valueOf(i))){
+					availableFunds = c.getAccNo().get(i);
+					accExist = true;
+				}	
+			}
+			
+			if (accExist == false) {
+				System.out.println("Invalid account number inserted");
+			}}while(accExist == false);
+	    	
 			System.out.println("Enter the amount to withdraw");
 			double withdraw = scanInt.nextDouble();
 			
+			if(withdraw > availableFunds) {
+				System.out.println("Not enough funds available");
+				System.out.println("Sending you back to the menu");
+			} else {
+				newFunds = availableFunds - withdraw;
+				c.getAccNo().remove(accNo, availableFunds);
+				c.getAccNo().put(accNo, newFunds);
+				
+				System.out.println("Prior funds: " + availableFunds);	
+				System.out.println("New funds: " + newFunds);	
+			}	
 			
+			
+		 }
+		   else {
+				System.out.println("You are ineligible to perform any transactions at this moment.");
+				System.out.println("Sending you back to the menu");
+			}
+			customerMenu();
 		}
+
+		
 		
 		
 		// method for deposits
-		public static Double deposit(String acc) {
-			Double balance = 0.00;
+		public static void deposit(Customer c) {
 			
-			return balance;	
-		}
-		
-		
-		// method for applying for new accounts
-		public static void applyNewAcc(String username){
-			System.out.println("What type of account would you like to open?");
+			if(hasAccount(c) == true) {
+				
+				double availableFunds = 0;
+				double newFunds;
+				boolean accExist = false;
+				Integer accNo;
+				Set<Integer> acc = c.getAccNo().keySet();
+				
+				System.out.println("Available account(s):");
+				for(Integer i: acc) {
+					System.out.println( "Account Number: " + Integer.valueOf(i) );
+		    	}
+				
+				do {
+				System.out.println("Please enter the account number that you would like to deposit money to:");
+				accNo = scanInt.nextInt();
+				
+				for(Integer i: acc) {
+					if(accNo.equals(Integer.valueOf(i))){
+						availableFunds = c.getAccNo().get(i);
+						accExist = true;
+					}	
+				}
+				
+				if (accExist == false) {
+					System.out.println("Invalid account number inserted");
+				}}while(accExist == false);
+		    	
+				System.out.println("Enter the amount to deposit");
+				double deposit = scanInt.nextDouble();
+				
+				if(deposit <= 0) {
+					System.out.println("We don't deal with beggars");
+					System.out.println("Sending you back to the menu");
+				} else {
+					newFunds = availableFunds + deposit;
+					c.getAccNo().remove(accNo, availableFunds);
+					c.getAccNo().put(accNo, newFunds);
 					
+					System.out.println("Prior funds: " + availableFunds);	
+					System.out.println("New funds: " + newFunds);	
+				}	
+				
+				
+			 }
+			   else {
+					System.out.println("You are ineligible to perform any transactions at this moment.");
+					System.out.println("Sending you back to the menu");
+				}
+				customerMenu();
 		}
 		
-		// method to transfer funds
+		
+		// Method for applying for new accounts
+		public static void applyNewAcc(Customer c){
+			System.out.println("Thank you for applying to open a new account!");
+			System.out.println("We will process your application shortly");
+			c.setPendingAcc(true);
+			customerMenu();
+		}
+		
+		// Method to transfer funds
 		public static void transferFunds(String acc1, String acc2) {
 			
 		}

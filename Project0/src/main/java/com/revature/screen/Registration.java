@@ -11,14 +11,20 @@ public class Registration {
 	Registration registeredUser = new Registration();
 	
 	public static void registerMenu() {
+		boolean unique;
+		String userName;
+		String password;
+		
+		do {
 		System.out.println("Please create your desired username");
-		String userName = scan.nextLine();
+		userName = scan.nextLine();
 		
 		// Validate that user name is unique
-		UserInfo.validateUniqueUsername(userName);
+		 unique = UserInfo.validateUniqueUsername(userName);
+		} while(unique == false);
 		
 		System.out.println("Please create a password");
-		String password = scan.nextLine();
+		password = scan.nextLine();
 		
 		// Create new customer object
 		new Customer(userName, password);

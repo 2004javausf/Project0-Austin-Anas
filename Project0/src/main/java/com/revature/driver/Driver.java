@@ -1,7 +1,10 @@
 package com.revature.driver;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
+import com.revature.beans.Customer;
 import com.revature.menu.PrintMenu;
 import com.revature.screen.AdminScr;
 import com.revature.screen.CustomerScr;
@@ -24,7 +27,7 @@ public class Driver {
 		System.out.println(UserInfo.customerList.toString());
 		System.out.println(UserInfo.employeeList.toString());
 		System.out.println(UserInfo.adminList.toString());
-		
+				
 		// Print main menu
 		mainMenu();
 	}

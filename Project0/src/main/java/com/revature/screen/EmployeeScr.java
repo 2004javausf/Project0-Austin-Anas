@@ -29,7 +29,7 @@ public class EmployeeScr {
 				if (inputPassword.equals(c.getPassword())) {
 					logged = true;
 					employeeMenu();
-				} else System.out.println("My child, wrong password");
+				} else System.out.println("Sir, wrong password");
 			 }
 		}while(logged=false);
 	}
@@ -47,7 +47,6 @@ public class EmployeeScr {
 			switch(employeeMenuChoice) {
 			default:
 				System.out.println("Invalid input");	
-
 			case 1:
 				// Check customer bank accounts
 				checkAcc();

@@ -234,8 +234,7 @@ public class CustomerScr {
 					System.out.println( "Account Number: " + Integer.valueOf(i) + "  Balance: " + c.getAccNo().get(i) );
 				}
 					
-					
-					// Check Account 2
+					// Check Account 1
 					do {	
 					System.out.println("Which account will you be transferring from?");
 					fromAccount = scanInt.nextInt();
@@ -251,7 +250,7 @@ public class CustomerScr {
 					}}while(acc1Exist == false);
 					
 					
-					// Account to transfer to					
+					// Check Account 2					
 					do {
 					System.out.println("What's the account number you'd like to transfer to?");
 					toAccount = scanInt.nextInt();
@@ -266,6 +265,8 @@ public class CustomerScr {
 						System.out.println("Invalid account number");
 					}}while(acc1Exist == false);
 					
+					
+					// Entering transferring amount
 					System.out.println("What is the amount you would like to transfer?");
 					Double transferAmount = scanDub.nextDouble();
 								
@@ -291,8 +292,5 @@ public class CustomerScr {
 					System.out.println("Sending you back to the menu");
 				}
 				customerMenu();
-			}
-							
-												
+			}												
 } 
-

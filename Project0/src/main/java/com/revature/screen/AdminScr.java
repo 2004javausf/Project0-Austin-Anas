@@ -31,7 +31,7 @@ public class AdminScr {
 				if (inputPassword.equals(c.getPassword())) {
 					logged = true;
 					adminMenu();
-				} else System.out.println("My child, wrong password");
+				} else System.out.println("Sir, wrong password");
 			}
 		}while(logged == false);
 	}
@@ -177,7 +177,7 @@ public class AdminScr {
 						}else {
 							System.out.println("You have rejected the customer's application.");		
 						}
-						//c.setPendingAcc(false);		
+						c.setPendingAcc(false);		
 					} else System.out.println("Username not found");
 				}while(userFound == false);
 		

@@ -1,7 +1,5 @@
 package com.revature.screen;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -14,6 +12,7 @@ public class CustomerScr {
 	
 	public static Scanner scanInt = new Scanner(System.in);
 	public static Scanner scan = new Scanner(System.in);
+	public static Scanner scanDub = new Scanner(System.in);
 	static boolean logged = false;
 	public static Customer c;
 	
@@ -60,6 +59,7 @@ public class CustomerScr {
 				withdraw(c);
 				break;
 			case 4: 
+				transferFunds(c);
 				 // Transfer Funds
 				break;
 			case 5:
@@ -96,7 +96,7 @@ public class CustomerScr {
 			Set<Integer> acc = c.getAccNo().keySet();
 			
 			for(Integer i: acc) {
-				System.out.println( "Account Number: " + Integer.valueOf(i) + "  Balance: " + c.getAccNo().get(i) );
+				System.out.println( "Account Number: " + Integer.valueOf(i) + "  Balance: " + "$" + c.getAccNo().get(i) );
 	    	}
 			customerMenu();
 		}
@@ -133,7 +133,7 @@ public class CustomerScr {
 			}}while(accExist == false);
 	    	
 			System.out.println("Enter the amount to withdraw");
-			double withdraw = scanInt.nextDouble();
+			double withdraw = scanDub.nextDouble();
 			
 			if(withdraw > availableFunds) {
 				System.out.println("Not enough funds available");
@@ -143,8 +143,8 @@ public class CustomerScr {
 				c.getAccNo().remove(accNo, availableFunds);
 				c.getAccNo().put(accNo, newFunds);
 				
-				System.out.println("Prior funds: " + availableFunds);	
-				System.out.println("New funds: " + newFunds);	
+				System.out.println("Prior funds: " + "$" + availableFunds);	
+				System.out.println("New funds: " + "$" + newFunds);	
 			}	
 		 }
 		   else {
@@ -186,7 +186,7 @@ public class CustomerScr {
 				}}while(accExist == false);
 		    	
 				System.out.println("Enter the amount to deposit");
-				double deposit = scanInt.nextDouble();
+				double deposit = scanDub.nextDouble();
 				
 				if(deposit <= 0) {
 					System.out.println("We don't deal with beggars");
@@ -218,7 +218,79 @@ public class CustomerScr {
 		}
 		
 		// Method to transfer funds
-		public static void transferFunds(String acc1, String acc2) {
+		public static void transferFunds(Customer c) {
+			boolean acc1Exist = false;
+			boolean acc2Exist = false;
+			Double fromBalance = 0.00;
+			Double toBalance = 0.00;
 			
-		}
-}
+			if(hasAccount(c) == true) {
+				Set<Integer> acc = c.getAccNo().keySet();
+				
+				
+				for(Integer i: acc) {
+					System.out.println( "Account Number: " + Integer.valueOf(i) + "  Balance: " + c.getAccNo().get(i) );
+				}
+					System.out.println("Which account will you be transferring from?");
+					Integer fromAccount = scanInt.nextInt();
+					
+					// Check Account 2
+					do {
+					for (Integer j : acc ) {
+						if (fromAccount.equals(j)) {
+							fromBalance = c.getAccNo().get(j);
+							acc1Exist = true;
+						}	
+					}
+						
+					if (acc1Exist == false) {
+						System.out.println("Invalid account number");
+					}}while(acc1Exist == false);
+					
+					
+					// Account to transfer to
+					System.out.println("What's the account number you'd like to transfer to?");
+					Integer toAccount = scanInt.nextInt();
+					
+					do {
+					for (Integer j : acc ) {
+						if (toAccount.equals(j)) {
+							toBalance = c.getAccNo().get(j);
+							acc2Exist = true;
+						}	
+					}
+						
+					if (acc2Exist == false) {
+						System.out.println("Invalid account number");
+					}}while(acc1Exist == false);
+					
+					System.out.println("What is the amount you would like to transfer?");
+					Double transferAmount = scanDub.nextDouble();
+								
+					if (transferAmount >= 0 && transferAmount < fromBalance) {
+						double newFromBalance = fromBalance - transferAmount;
+						double toAccountBalance = toBalance + transferAmount;
+						c.getAccNo().remove(fromAccount, fromBalance);
+						c.getAccNo().put(fromAccount, newFromBalance);
+						c.getAccNo().remove(toAccount, toBalance);
+						c.getAccNo().put(toAccount, toAccountBalance);
+						
+						System.out.println("\n====================================================");
+						System.out.println("Prior funds Account 1: " + "$" + fromBalance);	
+						System.out.println("Prior funds Account 2: " + "$" + toBalance);
+						
+						System.out.println("New funds Account 1: " + "$" + newFromBalance);	
+						System.out.println("New funds Account 2: " + "$" + toAccountBalance);
+					} else {
+						System.out.println("Not possible little one");
+					}
+				}  else {
+					System.out.println("You are ineligible to perform any transactions at this moment.");
+					System.out.println("Sending you back to the menu");
+				}
+				customerMenu();
+			}
+							
+												
+} 
+

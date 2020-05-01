@@ -62,9 +62,9 @@ public class EmployeeScr {
 			}
 		}
 		
-		//-----------------------Enployee Methods-----------------------------------------//
 		
-
+		//-----------------------Employee Methods-----------------------------------------//
+		
 		// Method to check acc
 		public static void checkAcc() {
 			System.out.println("Customer List:\n");

@@ -1,5 +1,7 @@
 package com.revature.screen;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -54,10 +56,12 @@ public class AdminScr {
 				// Check, approve & reject applications
 				break;
 			case 3:
-				// Exit
+				// Delete existing user accounts
 				deleteAcc();
 				break;
 			case 4 :
+				
+				// Exit to Main Menu
 				Driver.mainMenu();
 			default:
 				System.out.println("Invalid input. Goodbye \n");	
@@ -72,10 +76,16 @@ public class AdminScr {
 	
 	// Method to delete account under customer
 	public static void deleteAcc() {
+		
+		Map<Integer,Double> existingAcc = new HashMap();
+		Set<Integer> acc = new HashSet();
+		Customer c = new Customer();
 		String userName;
-		System.out.println("Customer List:\n");
+		Integer deletedAcc;
 		boolean userFound = false;
 		boolean accExist = false;
+		
+		System.out.println("Customer List:\n");
 		
 		for (int i = 0; i < UserInfo.customerList.size(); i++) {
 			Customer customer = UserInfo.customerList.get(i);
@@ -88,34 +98,29 @@ public class AdminScr {
 		do {
 			System.out.println("Please enter the customer's username:");
 			userName = scan.nextLine();
-			Customer c = UserInfo.findCustomerByUsername(userName);
+			c = UserInfo.findCustomerByUsername(userName);
 			
-			if(c.getUsername().equals(userName)) {
-				userFound = true;
+				if(c.getUsername().equals(userName)) {
+					userFound = true;
+					 acc = c.getAccNo().keySet();
+				}
+			}while(userFound == false);
+			
+		do {
+			System.out.println("Which account would you like to destroy?");
+			deletedAcc = scanInt.nextInt();
 				
-				Set<Integer> acc = c.getAccNo().keySet();
-				System.out.println("Which account would you like to destroy?");
-				Integer deletedAcc = scanInt.nextInt();
-				
-				do {
-					for(Integer i: acc) {
-						if(deletedAcc.equals(Integer.valueOf(i))){
-							Map<Integer,Double> existingAcc = c.getAccNo();
-							existingAcc.remove(deletedAcc);
-							c.setAccNo(existingAcc);
-							
-							accExist = true;
-						}	
+				for(Integer i: acc) {
+					if(deletedAcc.equals(Integer.valueOf(i))){
+						 existingAcc = c.getAccNo();
+						 accExist = true;
 					}
-					
-					if (accExist == false) {
-						System.out.println("Invalid account number inserted");
-					}}while(accExist == false);
-				
-						
-						
-			} else System.out.println("Username not found");
-		}while(userFound == false);
+				}
+			}while(accExist == false);
+		
+			existingAcc.remove(deletedAcc);
+			c.setAccNo(existingAcc);
+		
 		adminMenu();
 		} 		
 	

@@ -223,6 +223,8 @@ public class CustomerScr {
 			boolean acc2Exist = false;
 			Double fromBalance = 0.00;
 			Double toBalance = 0.00;
+			Integer toAccount = 0;
+			Integer fromAccount = 0;
 			
 			if(hasAccount(c) == true) {
 				Set<Integer> acc = c.getAccNo().keySet();
@@ -231,11 +233,12 @@ public class CustomerScr {
 				for(Integer i: acc) {
 					System.out.println( "Account Number: " + Integer.valueOf(i) + "  Balance: " + c.getAccNo().get(i) );
 				}
-					System.out.println("Which account will you be transferring from?");
-					Integer fromAccount = scanInt.nextInt();
+					
 					
 					// Check Account 2
-					do {
+					do {	
+					System.out.println("Which account will you be transferring from?");
+					fromAccount = scanInt.nextInt();
 					for (Integer j : acc ) {
 						if (fromAccount.equals(j)) {
 							fromBalance = c.getAccNo().get(j);
@@ -248,11 +251,10 @@ public class CustomerScr {
 					}}while(acc1Exist == false);
 					
 					
-					// Account to transfer to
-					System.out.println("What's the account number you'd like to transfer to?");
-					Integer toAccount = scanInt.nextInt();
-					
+					// Account to transfer to					
 					do {
+					System.out.println("What's the account number you'd like to transfer to?");
+					toAccount = scanInt.nextInt();
 					for (Integer j : acc ) {
 						if (toAccount.equals(j)) {
 							toBalance = c.getAccNo().get(j);
